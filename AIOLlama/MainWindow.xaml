@@ -1,0 +1,67 @@
+﻿<Window x:Class="AIOLlama.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AIOLlama"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None" SizeChanged="WindowSizeChanged" AllowsTransparency="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle MouseDown="MoveWindow" Grid.ColumnSpan="9" Fill="Transparent"/>
+
+        <StackPanel Margin="0,15,20,0" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Grid.Column="7" Grid.ColumnSpan="2">
+            <Button Style="{StaticResource Grey_Border}" Width="25" Height="25" Grid.Column="3" Margin="10,0,0,0" FontFamily="Segoe MDL2 Assets" FontSize="15" Grid.ColumnSpan="3" Grid.Row="3" Content="&#xEF2D;" Click="MinimiseWindow">
+                <Button.Clip>
+                    <RectangleGeometry Rect="0,0,30,30" RadiusX="2" RadiusY="2"/>
+                </Button.Clip>
+            </Button>
+
+            <Button x:Name="MaximiseOrNormaliseWindowButton" Style="{StaticResource Grey_Border}" Width="25" Height="25" Grid.Column="3" Margin="10,0,0,0" FontFamily="Segoe MDL2 Assets" FontSize="15" Grid.ColumnSpan="3" Grid.Row="3" Content="&#xEF2E;" Click="MaximiseOrNormaliseWindow">
+                <Button.Clip>
+                    <RectangleGeometry Rect="0,0,25,25" RadiusX="2" RadiusY="2"/>
+                </Button.Clip>
+            </Button>
+
+            <Button Style="{StaticResource Grey_Border}" Width="25" Height="25" Grid.Column="3" Margin="10,0,0,0" FontFamily="Segoe MDL2 Assets" FontSize="15" Grid.ColumnSpan="3" Grid.Row="3" Content="&#xEF2C;" Click="CloseWindow">
+                <Button.Clip>
+                    <RectangleGeometry Rect="0,0,25,25" RadiusX="2" RadiusY="2"/>
+                </Button.Clip>
+            </Button>
+
+        </StackPanel>
+
+        <StackPanel  Orientation="Horizontal" Grid.Row="8" Grid.ColumnSpan="9">
+            <TextBox x:Name="InputTextbox" Margin="10,0,0,0" Height="30" Width="700"/>
+            <Button x:Name="SpeechRecognitionButton" Style="{StaticResource Grey_Border}" Width="30" Height="30" Grid.Column="3" Margin="30,0,0,0" FontFamily="Segoe MDL2 Assets" FontSize="18" Grid.ColumnSpan="3" Grid.Row="3" Content="&#xF8B1;" Click="SpeechRecognitionOnOff">
+                <Button.Clip>
+                    <RectangleGeometry Rect="0,0,30,30" RadiusX="2" RadiusY="2"/>
+                </Button.Clip>
+            </Button>
+        </StackPanel>
+       
+    </Grid>
+</Window>

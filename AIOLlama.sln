@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIOLlama", "AIOLlama\AIOLlama.csproj", "{F2D13954-EC40-4A90-B516-77E2A8930381}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2D13954-EC40-4A90-B516-77E2A8930381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D13954-EC40-4A90-B516-77E2A8930381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D13954-EC40-4A90-B516-77E2A8930381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D13954-EC40-4A90-B516-77E2A8930381}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55C0A618-51CD-4FB3-956C-22F8CAD52B8B}
+	EndGlobalSection
+EndGlobal

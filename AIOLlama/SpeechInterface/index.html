@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Speech recognition</title>
+    <style>
+        #result {
+            border: 2px solid black;
+            height: 200px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        button {
+            position: absolute;
+            top: 240px;
+            left: 50%;
+        }
+    </style>
+    <script type="application/javascript">
+        const speechRecognizer = new webkitSpeechRecognition() || new SpeechRecognition();
+        function start() {
+            var r = document.getElementById("result");
+
+            if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
+                speechRecognizer.continuous = true;
+                speechRecognizer.interimResults = true;
+                speechRecognizer.lang = "en-US";
+                speechRecognizer.start();
+
+
+                let iteration = 0
+                var finalTranscripts = "";
+                speechRecognizer.end
+
+                let iter_ = [];
+                let tras = ""
+
+                speechRecognizer.onstart = () => {
+                    try {
+                        window.chrome.webview.postMessage("[ Activated ]");
+                    }
+                    catch { }
+                };
+
+                speechRecognizer.onresult = function (event) {
+                    var interimTranscripts = "";
+                    for (var i = event.resultIndex; i < event.results.length; i++) {
+                        var transcript = event.results[i][0].transcript;
+
+                        transcript.replace("\n", "<br>");
+                        if (event.results[i].isFinal) {
+                            iteration = 0;
+                            finalTranscripts += transcript;
+                            try {
+                                window.chrome.webview.postMessage("[ Final ]: " + transcript);
+                            }
+                            catch { }
+                        }
+                        else {
+                            iter_.push(transcript);
+                            if (iteration === 3) {
+                                iteration = 0;
+
+                                for (let ii = 0; ii < iter_[2].length; ii++) {
+                                    if (iter_[0][ii] === iter_[2][ii]) {
+                                        if (iter_[1][ii] === iter_[2][ii]) {
+                                            if (iter_[0][ii] === iter_[1][ii]) {
+                                                tras += iter_[2][ii]
+                                            }
+                                            else {
+                                                break;
+                                            }
+                                        }
+                                        else {
+                                            break;
+                                        }
+                                    }
+                                    else {
+                                        break;
+                                    }
+                                }
+
+                                try {
+                                    window.chrome.webview.postMessage(tras);
+                                }
+                                catch { }
+                                iter_ = []
+                                tras = "";
+                            }
+
+
+                            interimTranscripts += transcript;
+                        }
+
+                        r.innerHTML = finalTranscripts + '<span style="color: #999;">' + interimTranscripts + '</span>';
+                        if (event.results[i].isFinal) {
+                            finalTranscripts = "";
+                        }
+
+                        iteration++;
+                    }
+                };
+
+                speechRecognizer.onend = function() {
+                    console.log("!!! ENDED !!!");
+                    speechRecognizer.stop();
+                    start();
+                };
+            }
+            else {
+                r.innerHTML = "Your browser does not support that.";
+            }
+        }
+
+        function stop()
+        {
+            window.chrome.webview.postMessage("stopped");
+            speechRecognizer.onstart = null;
+            speechRecognizer.onend = null;
+            speechRecognizer.onerror = null;
+            speechRecognizer.stop();
+        }
+
+        start()
+    </script>
+</head>
+
+<body>
+    <div id="result"></div>
+    <div>
+        <button style="align-self: center; position: relative;" type="button" onclick="start()">Listen</button>
+        <button style="align-self: center; position: relative;" type="button" onclick="stop()">Stop</button>
+    </div>
+</body>
+
+</html>
